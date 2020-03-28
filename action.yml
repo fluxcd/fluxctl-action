@@ -1,5 +1,5 @@
 name: 'fluxctl'
-description: 'A GitHub Action to turn fluxctl commands'
+description: 'A GitHub Action to run fluxctl commands against a Kubernetes cluster'
 author: 'Stefan Prodan'
 branding:
   icon: 'command'

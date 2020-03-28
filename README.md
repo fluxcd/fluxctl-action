@@ -74,5 +74,6 @@ jobs:
 
 Note that we set `--git-branch=${GITHUB_REF#refs/heads/}` so that Flux will sync the current branch. 
 
-If the git repository is not public, then you have configure Flux
-with a [personal access token](https://docs.fluxcd.io/en/latest/guides/use-git-https/) so it can sync the repo over HTTPS.
+If the git repository is not public, then you have to configure Flux with a
+[personal access token](https://docs.fluxcd.io/en/latest/guides/use-git-https/)
+so that it can synchronize the repo over HTTPS.
