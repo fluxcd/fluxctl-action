@@ -72,4 +72,7 @@ jobs:
         run: kubectl get ns | grep test
 ```
 
-Note that the we set `--git-branch=${GITHUB_REF#refs/heads/}` so that Flux will sync the current branch.
+Note that we set `--git-branch=${GITHUB_REF#refs/heads/}` so that Flux will sync the current branch. 
+
+If the git repository is not public, then you have configure Flux
+with a [personal access token](https://docs.fluxcd.io/en/latest/guides/use-git-https/) so it can sync the repo over HTTPS.
