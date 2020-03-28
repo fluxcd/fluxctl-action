@@ -1,10 +1,6 @@
 name: e2e
 
-on:
-  pull_request:
-  push:
-    branches:
-      - 'master'
+on: push
 
 jobs:
   install-sync:
@@ -21,7 +17,7 @@ jobs:
           kubectl create ns flux
           fluxctl install \
           --git-path=test \
-          --git-branch=master \
+          --git-branch=${GITHUB_REF#refs/heads/} \
           --git-readonly=true \
           --registry-disable-scanning=true \
           --git-email=fluxcdbot@users.noreply.github.com \
