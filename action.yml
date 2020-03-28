@@ -1,0 +1,9 @@
+name: 'fluxctl'
+description: 'A GitHub Action to turn fluxctl commands'
+author: 'Stefan Prodan'
+branding:
+  icon: 'command'
+  color: 'blue'
+runs:
+  using: 'docker'
+  image: './src/Dockerfile'
