@@ -1,0 +1,37 @@
+name: e2e
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  install-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Kubernetes
+        uses: engineerd/setup-kind@v0.3.0
+      - name: Setup fluxctl
+        uses: ./
+      - name: Install Flux
+        run: |
+          kubectl create ns flux
+          fluxctl install \
+          --git-path=test \
+          --git-branch=master \
+          --git-readonly=true \
+          --registry-disable-scanning=true \
+          --git-email=fluxcdbot@users.noreply.github.com \
+          --git-url=https://github.com/fluxcd/fluxctl-action.git \
+          --namespace=flux | kubectl apply -f -
+      - name: Verify install
+        run: kubectl -n flux rollout status deploy/flux --timeout=1m
+      - name: Sync git with cluster
+        env:
+          FLUX_FORWARD_NAMESPACE: flux
+        run: fluxctl sync
+      - name: Verify sync
+        run: kubectl get ns | grep test
