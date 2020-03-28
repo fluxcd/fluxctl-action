@@ -1,6 +1,12 @@
 name: e2e
 
-on: push
+on:
+  pull_request:
+  push:
+    branches:
+      - '*'
+    tags-ignore:
+      - v.*
 
 jobs:
   install-sync:
