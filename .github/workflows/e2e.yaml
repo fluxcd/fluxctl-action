@@ -30,6 +30,8 @@ jobs:
           --namespace=flux | kubectl apply -f -
       - name: Verify install
         run: kubectl -n flux rollout status deploy/flux --timeout=1m
+      - name: Flux version
+        run: kubectl -n flux get deploy/flux -o jsonpath="{..image}"
       - name: Sync git with cluster
         env:
           FLUX_FORWARD_NAMESPACE: flux
