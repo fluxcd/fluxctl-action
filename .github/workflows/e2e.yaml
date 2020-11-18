@@ -2,10 +2,7 @@ name: e2e
 
 on:
   push:
-    branches:
-      - '*'
-    tags-ignore:
-      - v.*
+    pull_request:
 
 jobs:
   install-sync:
@@ -14,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Kubernetes
-        uses: engineerd/setup-kind@v0.3.0
+        uses: engineerd/setup-kind@v0.5.0
       - name: Setup fluxctl
         uses: ./
       - name: Install Flux
